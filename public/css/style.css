@@ -1,3 +1,15 @@
 body {
+    font-family: 'Lato', sans-serif;
     color: #B0413E;
+}
+header {
+    padding: 20px 10px;
+}
+.logo img {
+    max-height: 80px;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
 }
