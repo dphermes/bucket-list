@@ -1,6 +1,6 @@
 body {
     font-family: 'Lato', sans-serif;
-    color: #B0413E;
+    color: #222222;
 }
 header {
     padding: 20px 10px;
@@ -10,8 +10,9 @@ header {
 }
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
     text-transform: uppercase;
+    color: #22746E;
 }
 footer {
     background: #222222;
