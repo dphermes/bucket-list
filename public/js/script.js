@@ -1,0 +1,1 @@
+alert('Follow the rules buddy!');
