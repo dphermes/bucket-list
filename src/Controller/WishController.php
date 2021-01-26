@@ -20,9 +20,10 @@ class WishController extends AbstractController
      * @Route("/details/{id}", name="wish_details", requirements={"id": "[0-9]+"})
      */
     /* TODO methods={GET} */
-    public function detail($id)
+    public function detail(int $id): Response
     {
-        return $this->render('wish/details.html.twig');
+        // @TODO : Aller chercher dans la BDD le wish dont l'ID est dans l'URL
+        return $this->render('wish/details.html.twig', array('id' => $id));
     }
 
 }
