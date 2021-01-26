@@ -22,7 +22,7 @@ class WishController extends AbstractController
     /* TODO methods={GET} */
     public function detail(int $id): Response
     {
-        // @TODO : Aller chercher dans la BDD le wish dont l'ID est dans l'URL
+        // @TODO : Fetch wish in DB
         return $this->render('wish/details.html.twig', array('id' => $id));
     }
 
