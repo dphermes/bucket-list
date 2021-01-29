@@ -5,9 +5,20 @@
 {% block body %}
     <h1>My Wishlist</h1>
 
-    <div class="card">
+    {% for wish in wishes %}
+    <a href="{{ path('wish_details', {id: wish.id} ) }}">
+        <div class="card mb-2">
+            <div class="card-body">
+                {{ wish.title }}
+            </div>
+        </div>
+    </a>
+    {% else %}
+    <div class="card mb-2">
         <div class="card-body">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquid aut consectetur corporis cumque dolor dolore ipsum maiores minima necessitatibus quaerat, repellat tempore totam ullam, unde velit voluptas voluptate voluptates.
+            <span class="error">There is no wish in you list</span>
         </div>
     </div>
+    {% endfor %}
+
 {% endblock %}

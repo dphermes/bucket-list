@@ -1,13 +1,15 @@
 {% extends "base.html.twig" %}
 
-{% block title %}{{ parent() }}Wish Detail{% endblock %}
+{% block title %}{{ wish.title }} | {{ parent() }}{% endblock %}
 
 {% block body %}
-    <h1>Details</h1>
+
+    <h1>{{ wish.title }}</h1>
 
     <div class="card">
         <div class="card-body">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquid aut consectetur corporis cumque dolor dolore ipsum maiores minima necessitatibus quaerat, repellat tempore totam ullam, unde velit voluptas voluptate voluptates.
+            {{ wish.description }}
         </div>
     </div>
+
 {% endblock %}
