@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Censurator\Censurator;
 use App\Entity\Wish;
 use App\Form\WishType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,7 +16,7 @@ class AddWishController extends AbstractController
     /**
      * @Route("/add-wish", name="add_wish")
      */
-    public function create(Request $request, EntityManagerInterface $entityManager): Response
+    public function create(Request $request, EntityManagerInterface $entityManager, Censurator $censurator): Response
     {
 
         $myNewWish = new Wish();
@@ -31,6 +32,14 @@ class AddWishController extends AbstractController
             // Hydrate les propriété manquante requise en BDD
             $myNewWish->setDateCreated(new \DateTime());
             $myNewWish->setIsPublished(true);
+
+            $getTitle = $myNewWish->getTitle();
+            $pureTitle = $censurator->purify($getTitle);
+            $myNewWish->setTitle($pureTitle);
+
+            $getDesc = $myNewWish->getDescription();
+            $pureDesc = $censurator->purify($getDesc);
+            $myNewWish->setDescription($pureDesc);
 
             // Déclenche l'insert en bdd
             $entityManager->persist($myNewWish);
