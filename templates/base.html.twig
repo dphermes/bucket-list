@@ -43,6 +43,7 @@
                 <ul class="navbar-nav d-flex me-2">
                     {% if app.user %}
                         {# user is logged in #}
+                        <span class="nav-item nav-link welcome">Welcome {{ app.user.pseudo }}</span>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ path('add_wish') }}">Add Wish</a>
                         </li>
