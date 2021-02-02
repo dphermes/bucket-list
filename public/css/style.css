@@ -22,3 +22,7 @@ footer {
 .w90 {
     max-width: 90%;
 }
+.wish-author {
+    color: #6c757d;
+    font-style: italic;
+}

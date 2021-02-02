@@ -9,6 +9,7 @@
     <div class="card">
         <div class="card-body">
             {{ wish.description }}
+            <div class="wish-author small">Created by {{ wish.author }} in {{ wish.category }} | {{ wish.dateCreated|date('Y-m-d') }}</div>
         </div>
     </div>
 

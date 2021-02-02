@@ -39,19 +39,25 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ path('wish_list') }}">Wishlist</a>
                     </li>
+                </ul>
+                <ul class="navbar-nav d-flex me-2">
                     {% if app.user %}
                         {# user is logged in #}
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ path('add_wish') }}">Add Wish</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Logout</a>
+                        </li>
                     {% else %}
-                    {# user is not logged in #}
+                        {# user is not logged in #}
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ path('app_register') }}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">Login</a>
+                        </li>
                     {% endif %}
-                </ul>
-                <ul class="navbar-nav d-flex me-2">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Log In</a>
-                    </li>
                 </ul>
             </div>
         </div>

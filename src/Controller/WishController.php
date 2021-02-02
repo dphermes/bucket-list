@@ -14,7 +14,8 @@ class WishController extends AbstractController
      */
     public function list(WishRepository $wishRepository): Response
     {
-        $allWishes = $wishRepository->findBy(["isPublished" => "true"], ["title" => "DESC"]);
+        // $allWishes = $wishRepository->findBy(["isPublished" => "true"], ["title" => "DESC"]);
+        $allWishes = $wishRepository->findCategorizedWishes();
 
         return $this->render('wish/list.html.twig', [
             'controller_name' => 'WishController',
@@ -30,6 +31,12 @@ class WishController extends AbstractController
     {
         // @TODO : Fetch wish in DB
         $myWish = $wishRepository->find($id);
+
+        // If this wish doesn't exist in DB
+        if(!$myWish){
+            // 404 Error
+            throw $this->createNotFoundException('This wish is gone!');
+        }
 
         return $this->render('wish/details.html.twig', [
             'controller_name' => 'WishController',

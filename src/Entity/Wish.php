@@ -14,18 +14,13 @@ class Wish
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer", unique=true)
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @Assert\NotBlank(message="Your Bucket must have a title!")
-     * @Assert\Length(
-     *     min=4,
-     *     max=40,
-     *     minMessage="Too short! 4 characters minimum!",
-     *     maxMessage="Too long! 40 characters maximum!"
-     * )
+     * @Assert\NotBlank(message="Please provide an idea!")
+     * @Assert\Length(max=250, maxMessage="Max 250 characters please!")
      * @ORM\Column(type="string", length=250)
      */
     private $title;
@@ -51,100 +46,85 @@ class Wish
     private $dateCreated;
 
     /**
-     * @return mixed
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="wishes")
+     * @ORM\JoinColumn(nullable=false)
      */
-    public function getId()
+    private $category;
+
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * @param mixed $title
-     */
-    public function setTitle($title): void
+    public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @param mixed $description
-     */
-    public function setDescription($description): void
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAuthor()
+    public function getAuthor(): ?string
     {
         return $this->author;
     }
 
-    /**
-     * @param mixed $author
-     */
-    public function setAuthor($author): void
+    public function setAuthor(string $author): self
     {
         $this->author = $author;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIsPublished()
+    public function getIsPublished(): ?bool
     {
         return $this->isPublished;
     }
 
-    /**
-     * @param mixed $isPublished
-     */
-    public function setIsPublished($isPublished): void
+    public function setIsPublished(bool $isPublished): self
     {
         $this->isPublished = $isPublished;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDateCreated()
+    public function getDateCreated(): ?\DateTimeInterface
     {
         return $this->dateCreated;
     }
 
-    /**
-     * @param mixed $dateCreated
-     */
-    public function setDateCreated($dateCreated): void
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
         $this->dateCreated = $dateCreated;
+
+        return $this;
     }
 
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
 
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
 }

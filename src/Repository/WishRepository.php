@@ -19,6 +19,48 @@ class WishRepository extends ServiceEntityRepository
         parent::__construct($registry, Wish::class);
     }
 
+    public function findCategorizedWishes(): array
+    {
+        // REQUETE EN MODE CHAINE DQL
+        // On sélectionne les wish et les categories
+        // ON fait la jointure sur la propriété de la classe et thats it
+        // On pense à préfixer le nom des colonnes par l'alias de la table
+        /* $dql = "SELECT w, c
+                FROM App\Entity\Wish w 
+                JOIN w.category c 
+                WHERE w.isPublished = 1 
+                ORDER BY w.title
+                ";
+
+        $query = $this->getEntityManager()->createQuery($dql);
+        */
+
+        // REQUETE EN MODE QUERY BUILDER
+        $queryBuilder = $this->createQueryBuilder('w');
+
+        $queryBuilder->addOrderBy('w.title', 'DESC');
+        $queryBuilder
+            ->andWhere('w.isPublished = 1')
+            ->join('w.category', 'c')
+            ->addSelect('c');
+
+        //if($categoryId){
+            // $queryBuilder->andWhere();
+        //}
+
+        $query = $queryBuilder->getQuery();
+
+        // limit
+        $query->setMaxResults(30);
+
+        //offset
+        $query->setFirstResult(0);
+
+        $wishes = $query->getResult();
+
+        return $wishes;
+    }
+
     // /**
     //  * @return Wish[] Returns an array of Wish objects
     //  */
